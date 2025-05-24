@@ -7,6 +7,19 @@ import random
 
 from utils import assert_all_equal, benchmark_functions, print_output
 
+def remove_duplicates_aidan(input_array):
+    output_array = []
+    for input_index in range(len(input_array)):
+        input_item = input_array[input_index]
+        is_duplicated = False
+        for output_index in range(len(output_array)):
+            if output_array[output_index] == input_item:
+                is_duplicated = True
+                break
+        if not is_duplicated:
+            output_array.append(input_item)            
+    return output_array
+
 
 def remove_duplicates_slow_1(arr):
     output_arr = []
@@ -47,6 +60,7 @@ def main():
     n_runs = 5_000
 
     funcs = [
+        ("remove_duplicates_aidan", partial(remove_duplicates_aidan, arr)),
         ("remove_duplicates_slow_1", partial(remove_duplicates_slow_1, arr)),
         ("remove_duplicates_slow_2", partial(remove_duplicates_slow_2, arr)),
         ("remove_duplicates_fast", partial(remove_duplicates_fast, arr)),
