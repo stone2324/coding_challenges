@@ -40,14 +40,41 @@
 # 50 random tests
 # For tests with decimal values your solution must have precision of 1e-9.
 
-def geometric_sequence_sum(a, r, n):
+def geometric_sequence_sum_v1(start_number, rate, repetition):
     numbers = []
-    current_number = a
-    for i in range(n):
+    current_number = start_number
+    for i in range(repetition):
         numbers.append(current_number)
-        current_number  = current_number * r
+        current_number  = current_number * rate
     print(numbers)
     result = 0 
-    for i in range(n):
+    for i in range(repetition):
         result = result + numbers[i]
     return result
+
+
+def geometric_sequence_sum_v2(start_number, rate, repetition):
+    numbers = []
+    result = 0 
+    current_number = start_number
+    for i in range(repetition):
+        numbers.append(current_number)
+        current_number  = current_number * rate 
+        result = result + numbers[i]
+    return result
+
+def geometric_sequence_sum_v3(start_number, rate, repetition):
+    result = 0 
+    current_number = start_number
+    for i in range(repetition):
+        result = result + current_number
+        current_number  = current_number * rate 
+    return result
+
+
+def geometric_sequence_sum_v4(start_number, rate, repetition):
+    result = 0
+    for power in range(repetition):
+        result = result + start_number * rate ** power
+    return result
+
