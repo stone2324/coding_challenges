@@ -39,6 +39,9 @@
 # 5 fixed tests
 # 50 random tests
 # For tests with decimal values your solution must have precision of 1e-9.
+import random
+from functools import partial
+from utils import assert_all_equal, benchmark_functions, print_output
 
 def geometric_sequence_sum_v1(start_number, rate, repetition):
     numbers = []
@@ -78,3 +81,26 @@ def geometric_sequence_sum_v4(start_number, rate, repetition):
         result = result + start_number * rate ** power
     return result
 
+def main():
+
+    
+    start_number = random.randint(1, 10)
+    rate = random.randint(10,20)
+    repetition = random.randint(2,15)
+
+    n_runs = 5000
+
+    funcs = [
+        ("geometric_sequence_sum_v1", partial(geometric_sequence_sum_v1, start_number, rate, repetition)),
+        ("geometric_sequence_sum_v2", partial(geometric_sequence_sum_v2, start_number, rate, repetition)),
+        ("geometric_sequence_sum_v3", partial(geometric_sequence_sum_v3, start_number, rate, repetition)),
+        ("geometric_sequence_sum_v4", partial(geometric_sequence_sum_v4, start_number, rate, repetition)),
+    ]
+
+    print_output(funcs)
+    assert_all_equal(funcs)
+    benchmark_functions(funcs, n_runs)
+
+
+if __name__ == "__main__":
+    main()
