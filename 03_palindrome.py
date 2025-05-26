@@ -22,6 +22,15 @@
 # is_palindrome_array([9])                # Output: True
 # is_palindrome_array([])                 # Output: True (empty array is considered a palindrome)
 
+def test_is_palindrome_array(test_func):
+    assert test_func([1, 2, 3, 2, 1]) == True
+    assert test_func([4, 5, 6, 5, 4]) == True
+    assert test_func([1, 2, 3, 4]) == False
+    assert test_func([9]) == True
+    assert test_func([]) == True
+    print("All tests passed.")
+
+
 def is_palindrome_array(input_array):
     for index in range(len(input_array)-1):
         if not input_array[index] == input_array[(index + 1) * -1]:
@@ -30,7 +39,6 @@ def is_palindrome_array(input_array):
 
 
 test_array = [1, 2, 3, 2, 1]
-
 print(is_palindrome_array(test_array))
 
-
+test_is_palindrome_array(is_palindrome_array)
