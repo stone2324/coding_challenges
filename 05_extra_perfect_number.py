@@ -17,3 +17,9 @@
 # Explanation:
 # 5 in binary is 101 → first and last bits are set.
 # 7 in binary is 111 → first and last bits are set.
+
+def extra_perfect(N):
+    output = []
+    for i in range(1,N+1,2):
+        output.append(i)
+    return output
