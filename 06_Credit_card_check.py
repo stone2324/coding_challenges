@@ -18,6 +18,11 @@
 # get_issuer(5105105105105106) == "Mastercard"
 # get_issuer(9111111111111111) == "Unknown"
 
+from functools import partial
+from utils import assert_all_equal, benchmark_functions, print_output
+import random
+
+
 def get_issuer(card_number):
     match len(str(card_number)):
         case 15:
@@ -34,5 +39,36 @@ def get_issuer(card_number):
             if str(card_number)[0:4] == "6011":
                 return "Discover"
     return "Unknown"
-        
-print(get_issuer(41111111111111))
+
+def get_issuer_new(card_number):
+    card_string = str(card_number)
+    if card_string[0:2] in ["34","37"] and len(card_string) == 15:
+        return "AMEX"
+    if card_string[0:4] == "6011" and len(card_string) == 16:
+        return "Discover"
+    if int(card_string[0:2]) in range(51,56) and len(card_string) == 16:
+        return "Mastercard"
+    if card_string[0] == "4" and len(card_string) in [13,16]:
+        return "VISA"
+    return "Unknown"
+
+def main():
+
+    random.seed(42)
+    input = [str(random.randint(0,9)) for _ in range(random.randint(13,16))]
+    input = int("".join(input))
+
+    n_runs = 50000
+
+    funcs = [
+        ("get_issuer", partial(get_issuer, input)),
+        ("get_issuer_new", partial(get_issuer_new, input))
+        ]
+    print(f"The input is {input}")
+    print()
+    print_output(funcs)
+    print()
+    assert_all_equal(funcs)
+    benchmark_functions(funcs, n_runs)
+
+main()
