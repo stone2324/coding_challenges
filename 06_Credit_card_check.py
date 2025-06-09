@@ -24,33 +24,33 @@ import random
 
 
 def get_issuer(card_number):
-    match len(str(card_number)):
+    match len(str(card_number)): #sort cards by their number length
         case 15:
-            if str(card_number)[0:2] == "34" or str(card_number)[0:2] == "37":
+            if str(card_number)[0:2] == "34" or str(card_number)[0:2] == "37": #check if number begins in 34 or 37
                 return "AMEX"
         case 13:
-            if str(card_number)[0] == "4":
+            if str(card_number)[0] == "4": #check if number begins in 4
                 return "VISA"
         case 16:
-            if str(card_number)[0:2] in ["51","52","53","54","55"]:
+            if str(card_number)[0:2] in ["51","52","53","54","55"]: #check if number begins between 51-55
                 return "Mastercard"
-            if str(card_number)[0] == "4":
+            if str(card_number)[0] == "4": #check if number begins with 4
                 return "VISA"
-            if str(card_number)[0:4] == "6011":
+            if str(card_number)[0:4] == "6011": #check if the number begins with 6011
                 return "Discover"
-    return "Unknown"
+    return "Unknown" #if the card does not match anything, return "Unknown"
 
 def get_issuer_new(card_number):
     card_string = str(card_number)
-    if card_string[0:2] in ["34","37"] and len(card_string) == 15:
+    if card_string[0:2] in ["34","37"] and len(card_string) == 15: #check for AMEX
         return "AMEX"
-    if card_string[0:4] == "6011" and len(card_string) == 16:
+    if card_string[0:4] == "6011" and len(card_string) == 16:#check for Discover
         return "Discover"
-    if int(card_string[0:2]) in range(51,56) and len(card_string) == 16:
+    if int(card_string[0:2]) in range(51,56) and len(card_string) == 16:#check for Mastercard
         return "Mastercard"
-    if card_string[0] == "4" and len(card_string) in [13,16]:
+    if card_string[0] == "4" and len(card_string) in [13,16]:#check for VISA
         return "VISA"
-    return "Unknown"
+    return "Unknown" #if the card does not match anything, return "Unknown"
 
 def main():
 
