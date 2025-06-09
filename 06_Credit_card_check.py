@@ -52,11 +52,36 @@ def get_issuer_new(card_number):
         return "VISA"
     return "Unknown" #if the card does not match anything, return "Unknown"
 
-def main():
+def assertion_tests():
+    
+    #These assertions should be true
+    get_issuer(4111111111111) == "VISA"
+    get_issuer_new(4111111111111) == "VISA"
+    get_issuer(378282246310005) == "AMEX"
+    get_issuer_new(378282246310005) == "AMEX"
+    get_issuer(6011111111111117) == "Discover"
+    get_issuer_new(6011111111111117) == "Discover"
+    get_issuer(5105105105105100) == "Mastercard"
+    get_issuer_new(5105105105105100) == "Mastercard"
+    get_issuer(9111111111111111) == "Unknown"
+    get_issuer_new(9111111111111111) == "Unknown"
 
-    random.seed(42)
-    input = [str(random.randint(0,9)) for _ in range(random.randint(13,16))]
-    input = int("".join(input))
+
+    # The assertions are false
+    assert get_issuer(123456789012345) != "AMEX", "This should not be AMEX."
+    assert get_issuer_new(123456789012345) != "AMEX", "This should not be AMEX."
+    assert get_issuer(123456789012345) != "Discover", "This should not be Discover."
+    assert get_issuer_new(123456789012345) != "Discover", "This should not be Discover."
+    assert get_issuer(123456789012345) != "Mastercard", "This should not be Mastercard."
+    assert get_issuer_new(123456789012345) != "Mastercard", "This should not be Mastercard."
+    assert get_issuer(123456789012345) != "VISA", "This should not be VISA."
+    assert get_issuer_new(123456789012345) != "VISA", "This should not be VISA."
+    assert get_issuer(4111111111111111) != "Unknown", "This should not be Unknown."
+    assert get_issuer_new(4111111111111111) != "Unknown", "This should not be Unknown."
+
+def performance_tests():
+
+    input = random.randint(1000000000000,9999999999999999) #generate a number that must be between 13 - 16 digits long
 
     n_runs = 50000
 
@@ -71,4 +96,10 @@ def main():
     assert_all_equal(funcs)
     benchmark_functions(funcs, n_runs)
 
+
+def main():
+    assertion_tests()
+    performance_tests()
+
 main()
+
