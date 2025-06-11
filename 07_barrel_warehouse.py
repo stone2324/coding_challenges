@@ -37,4 +37,18 @@ def insert_barrels(inventory, barrels):
     
     return inventory 
 
+def assertion_tests():
+    #the conditions in assert should be TRUE
+    assert insert_barrels(['0','','','0','','','','0'], ['0','0','0']) == ['0','','','0','0','0','0','0']
+    assert insert_barrels(['0','0','','','0','','','','0'], ['0']) == ['0','0','0','','0','','','','0']
+    assert insert_barrels(['0','0','','0'],['0','0']) == ['0','0','','0']
 
+    #the conditions in assert should be FALSE
+    assert insert_barrels(['0','','','0','','','','0'], ['0','0']) != ['0','','','0','0','0','0','0']
+    assert insert_barrels(['0','0','','','0','','','','0'], ['0','0']) != ['0','0','0','','0','','','','0']
+    assert insert_barrels(['0','0','','0'],['0','0']) != ['0','0','0','0','0']
+
+def main():
+    assertion_tests()
+
+main()
