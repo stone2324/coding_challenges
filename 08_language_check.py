@@ -1,5 +1,5 @@
-#start: 9:05
-#end : 9:22
+#start: 9:05am 14/6/2025
+#end : 9:22am 14/6/2025
 
 # You received a whatsup message from an unknown number. Could it be from that girl/boy with a foreign accent you met yesterday evening?
 
@@ -24,22 +24,24 @@ def validate_hello(message):
     possible_greetings = ['hello','ciao','salut','hallo','hola','ahoj','czesc'] #list all possible languages to loop through
     for item in possible_greetings: #loop through languages
         if item in message.lower(): #check if the message contains a hello in any language
-            return True #if the message has hello, return true
+            return True #if the message has hello in, return true
     return False #otherwise, return false
 
 def assertion_tests():
     #these should be right
     assert validate_hello('Hello there!') == True
-    assert validate_hello('Ciao') == True
-    assert validate_hello('hallo') == True
-    assert validate_hello('Ahoj') == True
+    assert validate_hello('Ciao bella') == True
+    assert validate_hello('halloween') == True
+    assert validate_hello('aHoJ') == True
 
     #these should be false
-    assert validate_hello('hi') == False
-    assert validate_hello('helo') == False
-    assert validate_hello('ahjo') != False
-    assert validate_hello('Caio') != False
+    assert validate_hello('Good Morning!') == False
+    assert validate_hello('how are you!') == False
+    assert validate_hello('this is not a greeting') == False
+    assert validate_hello('Caio') == False
 
 def main():
     assertion_tests()
 
+if __name__ == "__main__":
+    main()
