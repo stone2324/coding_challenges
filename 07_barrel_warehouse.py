@@ -1,5 +1,5 @@
-# Start: 8:58
-# End:  9:20
+# Start: 8:58pm 12/6/2025
+# End:  9:20pm 12/6/2025
 #  Your task is to create a function that will help William better manage his warehouse, your function receives two parameters:
 
 # The first is a array that represents a warehouse of barrels; each character '0' represents a barrel, and an empty string '' represents an available space.
@@ -17,7 +17,7 @@
 # When placed, the barrels must be positioned from left to right in the available space.
 # If there isn't enough space, return the warehouse unchanged.
 
-def insert_barrels(inventory, barrels):
+def insert_barrels_old(inventory, barrels):
     space_available = 0
     start_index = 0
 
@@ -34,8 +34,20 @@ def insert_barrels(inventory, barrels):
                 break
         else:
             space_available = 0 #if there already is a barrel, there will be no space in that slot 
-    
-    return inventory 
+
+def insert_barrels(inventory, barrels):
+    is_empty_length = 0
+    for index, item in enumerate(inventory):
+        if item == "":
+            if is_empty_length == 0:
+                is_empty_index = index
+            is_empty_length += 1
+            if len(barrels) == is_empty_length:
+                inventory[is_empty_index:is_empty_index+len(barrels)] = ['0'] * len(barrels)
+                break
+        else:            
+            is_empty_length = 0
+    return inventory
 
 def assertion_tests():
     #the conditions in assert should be TRUE
@@ -51,4 +63,8 @@ def assertion_tests():
 def main():
     assertion_tests()
 
-main()
+if __name__ == "__main__":
+    assertion_tests()
+
+    # inventory, barrels = ['0','','','0','','','','0'], ['0','0','0']
+    # insert_barrels(inventory, barrels)
