@@ -1,5 +1,5 @@
-# start: 6:50 16/6/2025
-# end: 7:10 16/6/2025
+# start: 6:50am 16/6/2025
+# end: 7:10am 16/6/2025
 # The marketing team is spending way too much time typing in hashtags.
 # Let's help them with our own Hashtag Generator!
 
