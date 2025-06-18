@@ -1,5 +1,5 @@
-# start: 7:45 17/6/2025
-# end: 
+# start: 7:45am 17/6/2025
+# end: 8:07am 17/6/2025
 # Write an algorithm that takes an array and moves all of the zeros to the end, preserving the order of the other elements.
 
 # move_zeros([1, 0, 1, 2, 0, 1, 3]) # returns [1, 1, 2, 1, 3, 0, 0]
@@ -8,7 +8,7 @@
 def move_zero(array):
     zeros_in_array = 0
     for index, item in enumerate(array): #count and remove zeros
-        if item == 0:
+        if item == 0:   
             zeros_in_array += 1
             array.pop(index)
     array[len(array) : len(array) + zeros_in_array] = [0] * zeros_in_array #add zeros to the back 
