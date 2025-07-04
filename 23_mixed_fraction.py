@@ -22,28 +22,37 @@
 # Make sure not to modify the input of your function in-place, it is a bad practice.
 
 def mixed_fraction(string):
-    numerator = ""
-    denomentor = ""
-    is_numerator = True
-    for letter in string:
-        if letter == "/":
-            is_numerator = False
-            continue
-        if is_numerator:
-            numerator += letter
-        else:
-            denomentor += letter
-    numerator = int(numerator)
-    denomentor = int(denomentor)
-    whole_number = abs(numerator) // denomentor
-    if numerator / denomentor < 0:
-        whole_number *= -1
-    whole_number = str(whole_number)
-        
-    remainder = str(numerator % denomentor)
-    output = whole_number
-    if remainder != "0":
-        output += " " + remainder + "/" + str(denomentor)
-    return output
+    # Split numerator and denominator from input
+    slash_index = string.find("/")
+    numerator = int(string[:slash_index])
+    denominator = int(string[slash_index + 1:])
 
-print(mixed_fraction("-43/5"))
+    # Calculate whole number and remainder
+    whole = abs(numerator) // abs(denominator)
+    remainder = abs(numerator) % abs(denominator)
+
+    # Determine the sign using a multiline if-statement
+    sign = ""
+    if numerator * denominator < 0:
+        sign = "-"
+
+    if remainder == 0:
+        return sign + str(whole)
+    elif whole == 0:
+        return sign + f"{remainder}/{abs(denominator)}"
+    else:
+        return sign + f"{whole} {remainder}/{abs(denominator)}"
+    
+def tests():
+    # Simple mixed fraction
+    assert mixed_fraction("7/4") == "1 3/4"
+
+    # Negative numerator
+    assert mixed_fraction("-5/2") == "-2 1/2"
+
+    # Proper fraction (no whole part)
+    assert mixed_fraction("2/5") == "2/5"
+
+
+if __name__ == "__main__":
+    tests()
