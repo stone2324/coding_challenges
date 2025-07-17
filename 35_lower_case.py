@@ -1,4 +1,6 @@
-# The borrowers are tiny tiny fictional people. As tiny tiny people they have to be sure they aren't spotted, or more importantly, stepped on.
+#start: 8:45pm 16/7/2025
+# end: 8:56pm 16/7/2025
+#  The borrowers are tiny tiny fictional people. As tiny tiny people they have to be sure they aren't spotted, or more importantly, stepped on.
 
 # As a result, the borrowers talk very very quietly. They find that capitals and punctuation of any sort lead them to raise their voices and put them in danger.
 
